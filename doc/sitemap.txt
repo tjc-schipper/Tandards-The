@@ -1,0 +1,36 @@
+Header/footer:
+	Contactinformatie
+	Maak een afspraak/link naar contactformulier
+	Logo
+	Links naar externe resources (zorgkaart, reviews, etc)
+
+Index
+	Slogan
+	Pakkende introtekst
+	NEEM CONTACT/MAAK EEN AFSPRAAK
+	Wie zijn wij?
+		Waar staan we voor?
+		Waarden
+		Waarborgen
+	Testimonials
+	NEEM CONTACT/MAAK EEN AFSPRAAK
+	Links naar het team/over ons
+	Links naar behandelingen
+
+Het team/over ons
+	Korte intro over praktijk
+		Specialisme?
+		Kernwaarden en kwaliteiten?
+		Waarborg/keurmerken????
+	Foto's praktijk slider
+	Teamleden
+		(3 blokken naast elkaar met ronde foto's)
+
+Behandelingen
+	Lijst met behandelingen (square grid blocks?)
+
+Veel gestelde vragen
+
+Contact
+
+##DEBUG
