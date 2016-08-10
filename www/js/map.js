@@ -17,7 +17,7 @@ var styles = [{
 }, {
     "featureType": "road",
     "elementType": "all",
-    "stylers": [{"saturation": -100}, {"lightness": 45}]
+    "stylers": [{"saturation": 0}, {"lightness": 45}]    /* Original: Sat -100, lightness 45 */
 }, {
     "featureType": "road.highway",
     "elementType": "all",
@@ -37,7 +37,7 @@ var styles = [{
 }];
 
 //type your address after "address="
-jQuery.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=528 tenth Avenue Boston, BT 58966&sensor=false', function (data) {
+jQuery.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=Gerwenseweg 9a, Stiphout&sensor=false', function (data) {
     lat = data.results[0].geometry.location.lat;
     lng = data.results[0].geometry.location.lng;
 }).complete(function () {
@@ -56,10 +56,10 @@ function attachSecretMessage(marker, message) {
 
 window.dxmapLoadMap = function () {
     var center = new google.maps.LatLng(lat, lng);
-    var anotherCenter = new google.maps.LatLng(lat + 0.5, lng);
+    var anotherCenter = new google.maps.LatLng(lat + 0.008, lng);
     var settings = {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoom: 8,
+        zoom: 14,
         draggable: false,
         scrollwheel: false,
         center: anotherCenter,
@@ -67,15 +67,15 @@ window.dxmapLoadMap = function () {
     };
     map = new google.maps.Map(document.getElementById('map'), settings);
 
-    var image = 'images/address.png';
+    var image = 'images/address-2.png';
 
     var marker = new google.maps.Marker({
         position: center,
-        title: 'Map title',
+        title: 'Praktijk',
         map: map,
         icon: image
     });
-    marker.setTitle('Map title'.toString());
+    marker.setTitle('Praktijk'.toString());
     //type your map title and description here
-    attachSecretMessage(marker, '<h3>Map title</h3>Map HTML description');
+    //attachSecretMessage(marker, '<h3>Locatie</h3>Hier vindt u onze praktijk.');
 }
