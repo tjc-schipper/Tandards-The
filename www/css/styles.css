@@ -7413,6 +7413,20 @@ textarea {
 .sc_services.sc_services_style_4 .sc_description {
   padding-left: 100px;
 }
+.sc_services.sc_services_style_ts {
+  height: 400px;
+}
+.sc_services.sc_services_style_ts .btn:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  box-sizing: content-box;
+  border-radius: 45px;
+  border: 10px solid #f9f9f9;
+}
 /*=== [ Testimonials ] =======================================================================================*/
 .sc_testimonials {
   color: #ffffff;

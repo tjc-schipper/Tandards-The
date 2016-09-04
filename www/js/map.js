@@ -37,7 +37,7 @@ var styles = [{
 }];
 
 //type your address after "address="
-jQuery.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=Gerwenseweg 9a, Stiphout&sensor=false', function (data) {
+jQuery.getJSON('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAszTeDQcwNkvzYtfA5oZkT25Ork13FJ38&address=Gerwenseweg 9a, Stiphout', function (data) {
     lat = data.results[0].geometry.location.lat;
     lng = data.results[0].geometry.location.lng;
 }).complete(function () {

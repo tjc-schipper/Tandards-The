@@ -1739,6 +1739,22 @@ input[type="text"], input[type="submit"], [type="password"], [type="email"], tex
         padding-left: 100px;
       }
     }
+    &.sc_services_style_ts{
+      height: 400px;
+      .btn{
+        &:before{
+          content: '';
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          box-sizing: content-box;
+          border-radius: 45px;
+          border: 10px solid @body-bg;
+        }
+      }
+    }
   }
 
   /*=== [ Testimonials ] =======================================================================================*/
