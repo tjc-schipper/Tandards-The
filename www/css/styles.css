@@ -11057,3 +11057,16 @@ footer .copyright_area .container .sc_socials .sc_socials_item .sc_icon:hover {
   background: url(../images/preloader.gif) no-repeat 50% 50% transparent;
   margin: -40px 0 0 -40px;
 }
+/*=== [ Custom THIJS ] ======================================================================================*/
+#team_member_skills_section .container #external-links .sc_dropcaps.sc_dropcaps_style_4 .sc_dropcap {
+  margin-top: 2px;
+}
+#external-links .sc_dropcaps a {
+  color: #999999;
+}
+#external-links .sc_dropcaps ahover {
+  color: #4083C7;
+}
+#external-links .sc_dropcaps a span.sc_dropcap {
+  line-height: 32px;
+}

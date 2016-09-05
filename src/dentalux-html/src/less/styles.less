@@ -4051,7 +4051,7 @@ header{
          line-height: 23px;
          width: auto;
          height: auto;
-         margin-top: 9px;
+         margin-top: 2px;
          padding: 0 10px;
          margin-right: 16px;
        }
@@ -5966,3 +5966,21 @@ footer{
     background: url(../images/preloader.gif) no-repeat 50% 50% transparent;
     margin: -40px 0 0 -40px; }
 
+
+
+/*=== [ Custom THIJS ] ======================================================================================*/
+
+#external-links {
+  .sc_dropcaps {
+    a {
+      color: @text-color;
+      &hover {
+        color: @accent-primary;
+      }
+
+      span.sc_dropcap {
+        line-height: 32px;
+      }
+    }
+  }
+}
