@@ -8715,11 +8715,8 @@ header .topWrap .navbar a {
 #testimonials_section_3 .container h3 {
   font-weight: 600;
 }
-#testimonials_section_4.sc_parallax .sc_parallax_content {
-  background-image: url("../images/par-1.jpg");
-}
 #testimonials_section_4.sc_parallax .sc_parallax_content .sc_parallax_overlay {
-  background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%, rgba(64, 131, 199, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(52, 184, 192, 0.75) 0%, rgba(64, 131, 199, 0.9) 90%);
 }
 #testimonials_section_4 .container {
   padding-top: 61px;
@@ -8996,7 +8993,23 @@ header .topWrap .navbar a {
 }
 /*=== [ Eliminate Section ] ==================================================================================*/
 #eliminate_section.sc_parallax .sc_parallax_content {
-  background-image: url("../images/par-3.jpg");
+  background-image: url("../images/home-parallax-2560.jpg");
+  background-repeat: no-repeat;
+}
+@media (min-size: 1920px) {
+  #eliminate_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/home-parallax-2560.jpg");
+  }
+}
+@media (min-size: 1280px) and (max-size: 1919px) {
+  #eliminate_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/home-parallax-1920.jpg");
+  }
+}
+@media (max-size: 1279px) {
+  #eliminate_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/home-parallax-1280.jpg");
+  }
 }
 #eliminate_section.sc_parallax .sc_parallax_content .sc_parallax_overlay {
   background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%, rgba(64, 131, 199, 0.9) 100%);
@@ -9030,7 +9043,22 @@ header .topWrap .navbar a {
 }
 /*=== [ Team photo Section ] ==================================================================================*/
 #team_photo_section.sc_parallax .sc_parallax_content {
-  background-image: url("../images/par-3.jpg");
+  background-repeat: no-repeat;
+}
+@media (min-width: 1921px) {
+  #team_photo_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/team/team-buiten-2560-2.jpg");
+  }
+}
+@media (min-width: 1280px) and (max-width: 1920px) {
+  #team_photo_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/team/team-buiten-1920.jpg");
+  }
+}
+@media (max-width: 1279px) {
+  #team_photo_section.sc_parallax .sc_parallax_content {
+    background-image: url("../images/team/team-buiten-1280.jpg");
+  }
 }
 #team_photo_section.sc_parallax .sc_parallax_content .sc_parallax_overlay {
   background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%, rgba(64, 131, 199, 0.9) 100%);
@@ -9041,6 +9069,11 @@ header .topWrap .navbar a {
 #team_photo_section .container .parallax_image_spacer {
   min-height: 450px;
   width: 100%;
+}
+@media (min-width: 1921px) {
+  #team_photo_section .container .parallax_image_spacer {
+    min-height: 600px;
+  }
 }
 #team_photo_section .container .button_container {
   width: 100%;
@@ -9444,7 +9477,7 @@ header .topWrap .navbar a {
   line-height: 23px;
   width: auto;
   height: auto;
-  margin-top: 9px;
+  margin-top: 2px;
   padding: 0 10px;
   margin-right: 16px;
 }
@@ -11058,9 +11091,6 @@ footer .copyright_area .container .sc_socials .sc_socials_item .sc_icon:hover {
   margin: -40px 0 0 -40px;
 }
 /*=== [ Custom THIJS ] ======================================================================================*/
-#team_member_skills_section .container #external-links .sc_dropcaps.sc_dropcaps_style_4 .sc_dropcap {
-  margin-top: 2px;
-}
 #external-links .sc_dropcaps a {
   color: #999999;
 }

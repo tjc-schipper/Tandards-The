@@ -3192,9 +3192,8 @@ header{
 #testimonials_section_4{
   &.sc_parallax {
     .sc_parallax_content{
-      background-image: url("../images/par-1.jpg");
       .sc_parallax_overlay{
-        background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%,rgba(64, 131, 199, 0.9) 100%);
+        background: linear-gradient(to bottom, rgba(52, 184, 192, 75%) 0%,rgba(64, 131, 199, 0.9) 90%);
       }
     }
   }
@@ -3531,7 +3530,18 @@ header{
 #eliminate_section{
   &.sc_parallax {
     .sc_parallax_content{
-      background-image: url("../images/par-3.jpg");
+      background-image: url("../images/home-parallax-2560.jpg");
+      @media (min-size: 1920px) {
+        background-image: url("../images/home-parallax-2560.jpg");
+      }
+      @media (min-size: 1280px) and (max-size: 1919px) {
+        background-image: url("../images/home-parallax-1920.jpg");
+      }
+      @media (max-size: 1279px) {
+        background-image: url("../images/home-parallax-1280.jpg");
+      }
+      background-repeat: no-repeat;
+
       .sc_parallax_overlay{
         background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%,rgba(64, 131, 199, 0.9) 100%);
       }
@@ -3571,7 +3581,17 @@ header{
 #team_photo_section{
   &.sc_parallax {
     .sc_parallax_content{
-      background-image: url("../images/par-3.jpg");
+      @media (min-width: 1921px) {
+        background-image: url("../images/team/team-buiten-2560-2.jpg");
+      }
+      @media (min-width: 1280px) and (max-width: 1920px) {
+        background-image: url("../images/team/team-buiten-1920.jpg");        
+      }
+      @media (max-width: 1279px) {
+        background-image: url("../images/team/team-buiten-1280.jpg");
+      }
+      background-repeat: no-repeat;
+
       .sc_parallax_overlay{
         background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%,rgba(64, 131, 199, 0.9) 100%);
       }
@@ -3581,6 +3601,9 @@ header{
     padding-bottom: 58px;
     .parallax_image_spacer {
       min-height: 450px;
+      @media (min-width: 1921px) {
+        min-height: 600px;
+      }
       width: 100%;
     }
     .button_container {
@@ -5968,19 +5991,19 @@ footer{
 
 
 
-/*=== [ Custom THIJS ] ======================================================================================*/
+    /*=== [ Custom THIJS ] ======================================================================================*/
 
-#external-links {
-  .sc_dropcaps {
-    a {
-      color: @text-color;
-      &hover {
-        color: @accent-primary;
-      }
+    #external-links {
+      .sc_dropcaps {
+        a {
+          color: @text-color;
+          &hover {
+            color: @accent-primary;
+          }
 
-      span.sc_dropcap {
-        line-height: 32px;
+          span.sc_dropcap {
+            line-height: 32px;
+          }
+        }
       }
     }
-  }
-}
