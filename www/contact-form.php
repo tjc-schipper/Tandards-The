@@ -4,16 +4,16 @@
 //////////////////////////
 
 //Your E-mail
-$your_email = 'your@email.com';
+$your_email = 'tjc.schipper@gmail.com';
 
 //Default Subject if 'subject' field not specified
-$default_subject = 'From My Contact Form';
+$default_subject = 'Test subject';
 
 //Message if 'name' field not specified
-$name_not_specified = 'Please type a valid name';
+$name_not_specified = '[ANONYMOUS]';
 
 //Message if 'message' field not specified
-$message_not_specified = 'Please type a vaild message';
+$message_not_specified = '[NO MESSAGE]';
 
 //Message if e-mail sent successfully
 $email_was_sent = 'Thanks, your message successfully sent';
@@ -21,12 +21,15 @@ $email_was_sent = 'Thanks, your message successfully sent';
 //Message if e-mail not sent (server not configured)
 $server_not_configured = 'Sorry, mail server not configured';
 
+// Message if captcha not verified
+$invalid_captcha = "Sorry, your captcha attempt was not verified. Please try again.";
+
 
 ///////////////////////////
 //Contact Form Processing//
 ///////////////////////////
 $errors = array();
-if(isset($_POST['message']) and isset($_POST['name'])) {
+if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'])) {
 	if(!empty($_POST['name']))
 		$sender_name  = stripslashes(strip_tags(trim($_POST['name'])));
 	
@@ -39,6 +42,15 @@ if(isset($_POST['message']) and isset($_POST['name'])) {
 	if(!empty($_POST['subject']))
 		$subject      = stripslashes(strip_tags(trim($_POST['subject'])));
 
+	if (!empty($_POST['captcha']))
+		$captcha      = stripslashes(strip_tags(trim($_POST['captcha'])));
+
+
+	// Verify captcha response
+	$verification = json_decode(verifyCaptcha($captcha), true);
+	if ($verification['success'] === FALSE) {
+		$errors[] = $invalid_captcha;
+	}
 
 	//Message if no sender name was specified
 	if(empty($sender_name)) {
@@ -70,5 +82,26 @@ if(isset($_POST['message']) and isset($_POST['name'])) {
 } else {
 	// if "name" or "message" vars not send ('name' attribute of contact form input fields was changed)
 	echo '"name" and "message" variables were not received by server. Please check "name" attributes for your input fields';
+}
+
+function verifyCaptcha($response) {
+	$url = 'https://www.google.com/recaptcha/api/siteverify';
+	$data = array('secret' => '6Lcp8goUAAAAAAxPxLSxXirkgYpiOvuD_8FihzUD', 'response' => $response);
+
+	$options = array(
+		'http' => array(
+			'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+			'method' => 'POST',
+			'content' => http_build_query($data)
+			)
+		);
+
+	$context = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+	if ($result === FALSE) {
+		// Handle errors
+	} else {
+		return $result;
+	}
 }
 ?>
