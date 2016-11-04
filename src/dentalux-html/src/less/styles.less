@@ -1453,6 +1453,17 @@ input[type="text"], input[type="submit"], [type="password"], [type="email"], tex
       -webkit-transition: none;
       -o-transition: none;
       transition: none;
+      &#message-display {
+        padding-top: 6px;
+        padding-left: 24px;
+        padding-bottom: 30px;
+        &.send-success {
+          border-color: #22aa22 !important;
+        }
+        &.send-error {
+          border-color: #aa2222 !important;
+        }
+      }
     }
     textarea{
       resize: none;

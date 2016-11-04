@@ -55,21 +55,30 @@
                 phone: phone,
                 message: message,
                 captcha: captchaResponse
-            }, function (r) {   // JSON object {success, errors}
-            var response = JSON.parse(r);
-                // Reset captcha if not verified
+            }, function (r) {
+                var response = JSON.parse(r);   // JSON object {success:bool, errors:string[]}
+                
+                // Show all errors/messages in message-display
+                var display = $("#message-display").text((function(ers){
+                    var str = "";
+                    for (var i in ers) {
+                        str += ers[i] + "\r\n";
+                    }
+                    return str;
+                })(response.errors));
+
+                // Set message-display styling and handle form state depending on success
                 if (!response.success) {
                     grecaptcha.reset();
-                    for (var i in response.errors) {
-                        alert(response.errors[i]);
-                    }
+                    display.removeClass("send-success").addClass("send-error");
                 } else {
-                    // TODO: Set 'success' display somewhere on page!
-
+                    display.removeClass("send-error").addClass("send-success");
+                    // Disable the form to prevent spamming
+                    $("#contact-form input").attr("disabled", true);
                 }
             });
-        }
-    </script>
+}
+</script>
 
     <!--[if lt IE 9]>
     <script src="js/vendor/html5shiv.min.js"></script>
@@ -98,10 +107,10 @@
                                     <div class="menuUsItem pull-left">
                                         <div class="contact_area">
                                             <img class="topmark" src="./images/topmark-nvoi.png" />
-        									<img class="topmark" src="./images/topmark-nvgpt.png" />
-        									<img class="topmark" src="./images/topmark-ant.png" />
-        									<img class="topmark" src="./images/topmark-nvvp.png" />
-        									<img class="topmark" src="./images/topmark-krt.png" />
+                                            <img class="topmark" src="./images/topmark-nvgpt.png" />
+                                            <img class="topmark" src="./images/topmark-ant.png" />
+                                            <img class="topmark" src="./images/topmark-nvvp.png" />
+                                            <img class="topmark" src="./images/topmark-krt.png" />
                                         </div>
                                     </div>
                                 </div>
@@ -301,9 +310,13 @@
                                             <textarea id="message" class="form-control" rows="6" required>Ik zou graag vrijblijvend een afspraak maken, </textarea>
                                         </div>
                                         <div class="form-group col-sm-6 col-sm-offset-3">
+                                            <span id="message-display" class="form-control"></span>
+                                        </div>
+                                        <div class="form-group col-sm-6 col-sm-offset-3">
                                             <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lcp8goUAAAAANtLe0nMEeLJCJtkx8RbYH7UfDMV" data-callback="recaptchaCallback"></div>
                                             <button type="button" id="form-submit" class="btn btn-default btn-lg pull-right" onclick="emailFormSubmit()" disabled>Verstuur</button>
                                         </div>
+
                                     </div>
                                 </form>
                             </div>

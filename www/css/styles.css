@@ -7131,6 +7131,17 @@ textarea {
   -o-transition: none;
   transition: none;
 }
+#contactForm .form-control#message-display {
+  padding-top: 6px;
+  padding-left: 24px;
+  padding-bottom: 30px;
+}
+#contactForm .form-control#message-display.send-success {
+  border-color: #22aa22 !important;
+}
+#contactForm .form-control#message-display.send-error {
+  border-color: #aa2222 !important;
+}
 #contactForm textarea {
   resize: none;
 }
