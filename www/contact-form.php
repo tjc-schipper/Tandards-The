@@ -7,25 +7,25 @@
 $your_email = 'tjc.schipper@gmail.com';
 
 //Default Subject if 'subject' field not specified
-$default_subject = 'Test subject';
+$default_subject = 'Nieuw bericht van contactformulier';
 
 //Message if 'name' field not specified
-$name_not_specified = '[ANONYMOUS]';
+$name_not_specified = '[Anoniempje]';
 
 //Message if 'message' field not specified
-$message_not_specified = '[NO MESSAGE]';
+$message_not_specified = '[Geen tekst ingevuld]';
 
 //Message if e-mail sent successfully
-$email_was_sent = 'Thanks, your message successfully sent';
+$email_was_sent = 'Bedankt, uw bericht is verzonden. Wij zullen spoedig contact met u opnemen.';
 
 //Message if e-mail not sent (server not configured)
-$server_not_configured = 'Sorry, mail server not configured';
+$server_not_configured = 'Er is een probleem met de mailservice. Email naar [placeholder] of bel ons om contact op te nemen. Excuses voor het ongemak.';
 
 // Message if captcha not verified
-$invalid_captcha = "Sorry, your captcha attempt was not verified. Please try again.";
+$invalid_captcha = "Het anti-spamfilter kon uw browser niet valideren. Email naar [placeholder] of bel ons om contact op te nemen. Excuses voor het ongemak.";
 
 // No name or email entered
-$no_name_or_email = '"name" and "message" variables were not received by server. Please check "name" attributes for your input fields';
+$no_name_or_email = 'Dit bericht kan niet worden verzonden zonder naam of email adres. Vul deze in alvorens u op verzenden klikt.';
 
 
 ///////////////////////////
