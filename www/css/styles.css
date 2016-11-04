@@ -8174,6 +8174,9 @@ section .container.no_vertical_padding {
   position: relative;
   top: 1px;
 }
+#underheader .container .topWrap .usermenu_area .contact_area img.topmark {
+  margin-right: 12px;
+}
 #underheader .container .topWrap .usermenu_area .contact_area .text-separator {
   display: inline-block;
   border-radius: 50%;

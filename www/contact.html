@@ -50,16 +50,22 @@
             
             $.post("contact-form.php", {
                 name: firstName,
-                lastName: lastName,
+                lastname: lastName,
                 email: email,
                 phone: phone,
                 message: message,
                 captcha: captchaResponse
-            }, function (response) {
-                alert(response);
+            }, function (r) {   // JSON object {success, errors}
+            var response = JSON.parse(r);
                 // Reset captcha if not verified
-                if (response != "Thanks, your message successfully sent") { // Set hack generator to 11
+                if (!response.success) {
                     grecaptcha.reset();
+                    for (var i in response.errors) {
+                        alert(response.errors[i]);
+                    }
+                } else {
+                    // TODO: Set 'success' display somewhere on page!
+
                 }
             });
         }

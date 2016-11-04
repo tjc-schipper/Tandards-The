@@ -24,14 +24,17 @@ $server_not_configured = 'Sorry, mail server not configured';
 // Message if captcha not verified
 $invalid_captcha = "Sorry, your captcha attempt was not verified. Please try again.";
 
+// No name or email entered
+$no_name_or_email = '"name" and "message" variables were not received by server. Please check "name" attributes for your input fields';
+
 
 ///////////////////////////
 //Contact Form Processing//
 ///////////////////////////
 $errors = array();
 if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'])) {
-	if(!empty($_POST['name']))
-		$sender_name  = stripslashes(strip_tags(trim($_POST['name'])));
+	if(!empty($_POST['name']) and !empty($_POST['lastname']))
+		$sender_name  = stripslashes(strip_tags(trim($_POST['name']))).' '.stripslashes(strip_tags(trim($_POST['lastname'])));
 	
 	if(!empty($_POST['message']))
 		$message      = stripslashes(strip_tags(trim($_POST['message'])));
@@ -71,17 +74,21 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 	//sending message if no errors
 	if(empty($errors)) {
 		if (mail($your_email, $subject, $message, $from)) {
-			echo $email_was_sent;
+			echo responseObject(true, $email_was_sent);
+			//echo $email_was_sent;
 		} else {
 			$errors[] = $server_not_configured;
-			echo implode('<br>', $errors );
+			echo responseObject(false, $errors);
+			//echo implode('<br>', $errors );
 		}
 	} else {
 		echo implode('<br>', $errors );
+		echo responseObject(false, $errors);
 	}
 } else {
 	// if "name" or "message" vars not send ('name' attribute of contact form input fields was changed)
-	echo '"name" and "message" variables were not received by server. Please check "name" attributes for your input fields';
+	echo responseObject(false, $no_name_or_email);
+	//echo '"name" and "message" variables were not received by server. Please check "name" attributes for your input fields';
 }
 
 function verifyCaptcha($response) {
@@ -103,5 +110,10 @@ function verifyCaptcha($response) {
 	} else {
 		return $result;
 	}
+}
+
+function responseObject($success, $errors) {
+	$res = array('success' => $success, 'errors' => $errors);
+	return json_encode($res);
 }
 ?>
