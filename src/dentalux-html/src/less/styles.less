@@ -3206,11 +3206,24 @@ header{
 #testimonials_section_4{
   &.sc_parallax {
     .sc_parallax_content{
+      background-color: red;
+      //background-image: url("../images/home-parallax-2560.jpg");
+      background-repeat: no-repeat;
+      @media (min-size: 1920px) {
+        background-image: url("../images/home-parallax-2560.jpg");
+      }
+      @media (min-size: 1280px) and (max-size: 1919px) {
+        background-image: url("../images/home-parallax-1920.jpg");
+      }
+      @media (max-size: 1279px) {
+        background-image: url("../images/home-parallax-1280.jpg");
+      }
       .sc_parallax_overlay{
         background: linear-gradient(to bottom, rgba(52, 184, 192, 75%) 0%,rgba(64, 131, 199, 0.9) 90%);
       }
     }
   }
+
   .container{
     padding-top: 61px;
     padding-bottom: 30px;
@@ -3260,10 +3273,11 @@ header{
   .container{
     padding-top: 54px;
     padding-bottom: 30px;
+    min-height: 400px;
   }
   &.sc_parallax {
     .sc_parallax_content{
-      background-image: url("../images/par-1.jpg");
+      background-image: url("../images/home-parallax-2560.jpg");
       .sc_parallax_overlay{
         background: linear-gradient(to bottom, rgba(52, 184, 192, 0.9) 0%,rgba(64, 131, 199, 0.9) 100%);
       }
@@ -3578,6 +3592,36 @@ header{
       color: @component-active-color;
       &.sc_list_style_iconed > li:before {
         color: @component-active-color;
+        font-size: 24px;
+      }
+      .sc_list_item{
+        margin-bottom: 6px;
+      }
+    }
+    .btn{
+      margin-top: 35px;
+    }
+  }
+}
+
+#key_points_section{
+  .container{
+    padding-bottom: 58px;
+    .sc_title{
+      color:  @headings-color;
+      font-size: 50px;
+      font-weight: 500;
+      line-height: 60px;
+      text-transform: none;
+      letter-spacing: 1px;
+      margin-top: 6px;
+      margin-bottom: 20px;
+    }
+    .sc_list{
+      font-size: 17px;
+      color: @text-color;
+      &.sc_list_style_iconed > li:before {
+        color: @text-color;
         font-size: 24px;
       }
       .sc_list_item{
