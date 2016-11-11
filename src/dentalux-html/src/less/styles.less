@@ -3069,6 +3069,106 @@ header{
   }
 }
 
+.header_style_3{
+  #underheader{
+    .container{
+      .topWrap{
+        .usermenu_area{
+          .contact_area{
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 39.244px;
+            padding-top: 6px;
+            padding-bottom: 0;
+            float: right;
+            .text-separator{
+              margin: 4px 7px;
+            }
+            [class^="icon-"]:before, [class*=" icon-"]:before {
+              font-size: 12px;
+              text-align: center;
+              line-height: 20px;
+              vertical-align: top;
+            }
+            .icon-rounded{
+              padding-top: 1px;
+              position: relative;
+              top: 4px;
+              right: 1px;
+              width: 26px;
+              height: 26px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  header {
+    .topWrap {
+      .logo{
+        padding-bottom: 18px;
+        &.logo_left{
+          float: left;
+        }
+        .navbar-brand{
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 39.244px;
+          margin-bottom: 110px;
+          margin-left: 0;
+          .logo_text{
+            margin-left: 4px;
+            top: 3px;
+            i{
+              font-size: 45px;
+              font-weight: 400;
+              margin-left: 0px;
+              letter-spacing: 1px;
+            }
+          }
+
+          img{
+            width: 36px;
+            height: 102px;
+            margin-top: -6px;
+          }
+        }
+      }
+      .search{
+        margin: 7px;
+        &.searchOpen{
+          &:before{
+            padding-right: 6px;
+            color: @headings-color;
+          }
+        }
+        &:before{
+          font-size: 20px;
+          padding-right: 0;
+          color: @brand-primary;
+        }
+      }
+      .bottomWrap{
+        &:before{
+          display: none;
+        }
+      }
+      .menuTopWrap {
+        padding-top: 14px;
+        padding-bottom: 17px;
+        #mainmenu{
+          & > li {
+            ul{
+              top: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /*=== [ Breadcrumb Section ] =================================================================================*/
 
 .breadcrumb{
