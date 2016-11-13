@@ -76,7 +76,8 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 
 	// Compose message body
 	$body = '<html><body>';
-	$body .= '<h1>Nieuw bericht van <i>'.$contact_name.'</i>.</h1>';
+	$body .= '<h2>Nieuw bericht van <i>'.$contact_name.'</i>.</h2>';
+	$body .= '<h4>Verstuurd op '.date('d-m-Y').' om '.date('g:iA').'</h4>';
 	if (!empty($message))
 		$body .= wordwrap($message, 70);
 	else

@@ -6347,6 +6347,10 @@ textarea {
 .sc_accordion .sc_accordion_item .sc_accordion_content {
   padding: 24px 70px 32px 35px;
 }
+.sc_accordion .sc_accordion_item .sc_accordion_content ol li {
+  margin-bottom: 6px;
+  color: #999999;
+}
 .sc_accordion.sc_accordion_style_1 {
   box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.01);
 }
