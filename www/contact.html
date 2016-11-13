@@ -26,13 +26,15 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
 
+    <!-- Google Maps -->
+    <script src="js/map.js"></script>
+
     <!-- ReCaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         // Enable the form submit button when recaptcha has been verified
         var captchaResponse = null;
         function recaptchaCallback (response) {
-            console.log(response);
             captchaResponse = response;
             if (response) {
                 document.getElementById("form-submit").disabled = false;
@@ -45,7 +47,7 @@
             var lastName = document.getElementById("last-name").value.toString();
             var email = document.getElementById("email").value.toString();
             var phone = document.getElementById("phone").value.toString();
-            var message = document.getElementById("name").value.toString();
+            var message = document.getElementById("message").value.toString();
             
             $.post("contact-form.php", {
                 name: firstName,
@@ -60,9 +62,16 @@
                 // Show all errors/messages in message-display
                 var display = $("#message-display").text((function(ers){
                     var str = "";
-                    for (var i in ers) {
-                        str += ers[i] + "\r\n";
+
+                    if (ers.constructor === Array) {
+                        // If multiple errors, append the strings with line breaks inbetween
+                        for (var i in ers) {
+                            str += ers[i] + "\r\n";
+                        }
+                    } else {
+                        str = ers;
                     }
+
                     return str;
                 })(response.errors));
 
@@ -98,277 +107,286 @@
                             <div class="usermenu_area">
                                 <div class="menuUsItem pull-right">
                                     <div class="timetable_area">
-                                        <p class="">Ma - Wo: <strong>8:00 - 17:00</strong></br>
-                                            Do - Vr: <strong>8:00 - 12:00</strong></p>
-                                            <p class="">Tel: <strong>0683899931</strong></p>
+                                        <div style="width: 100px; float: left;">
+                                            <span class="">Ma - Vr: </span><br>
+                                            <span class="">Za - Zo: </span><br>
+                                            <span class="">Tel: </span>
                                         </div>
-                                    </div>
-                                    <div class="menuUsItem pull-left">
-                                        <div class="contact_area">
-                                            <img class="topmark" src="./images/topmark-nvoi.png" />
-                                            <img class="topmark" src="./images/topmark-nvgpt.png" />
-                                            <img class="topmark" src="./images/topmark-ant.png" />
-                                            <img class="topmark" src="./images/topmark-nvvp.png" />
-                                            <img class="topmark" src="./images/topmark-krt.png" />
+                                        <div style="width: 150px; float: left;">
+                                            <span class=""><strong>8:00 - 17:00</strong></span><br>
+                                            <span class=""><strong>Gesloten</strong></span><br>
+                                            <span class=""><strong>0492 - 55 45 01</strong></span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <<!-- MENU -->
-                <header id="header" class="">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 topWrap">
-                                <div class="logo logo_center">
-                                    <a class="navbar-brand" href="index.html">
-                                        <img class="logo_main" src="images/logo-only.png" alt="Tandarts The Logo">
-                                        <div class="logo_text_container">
-                                            <span class="logo_text">Tandarts P.T. The</span>
-                                            <span class="logo_subtitle">Praktijk voor parodontologie, implantologie en orthodontie.</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="bottomWrap">
-                                    <div class="search" title="Open/close search form">
-                                        <div class="searchForm">
-                                            <form role="search" method="get" class="search-form" action="#">
-                                                <input type="text" class="searchField" placeholder="" value="" name="s" title="Search for:">
-                                                <button type="submit" class="searchSubmit" title="Start search"><span class="icoSearch"></span></button>
-                                            </form>
-                                        </div>
-                                        <div class="ajaxSearchResults"></div>
+                                <div class="menuUsItem pull-left">
+                                    <div class="contact_area">
+                                        <img class="topmark" src="./images/topmark-nvoi.png" />
+                                        <img class="topmark" src="./images/topmark-nvgpt.png" />
+                                        <img class="topmark" src="./images/topmark-ant.png" />
+                                        <img class="topmark" src="./images/topmark-nvvp.png" />
+                                        <img class="topmark" src="./images/topmark-krt.png" />
                                     </div>
-                                    <a href="#" class="openResponsiveMenu icon-menu"></a>
-                                    <nav id="mainmenu_wrapper" class="menuTopWrap topMenuStyleLine text-center">
-                                        <ul id="mainmenu" class="nav sf-menu inited ">
-
-                                            <li class="menu-item-type-custom">
-                                                <a href="/private/index.html">Home</a>
-                                            </li>
-
-                                            <li class="menu-item-type-custom">
-                                                <a href="/private/team.html">Ons team</a>
-                                            </li>
-
-                                            <li class="menu-item-type-custom menu-item-has-children">
-                                                <a href="/private/diensten.html">Diensten <span class="caret"></span></a>
-                                                <ul class="sub-menu fadeInUp animated">
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/chirurgie.html">Chirurgie</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/esthetiek.html">Esthetiek</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/gaatjes-en-vullen.html">Gaatjes en vullingen</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/implantologie.html">Implantologie</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/knarsen.html">Knarsen</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/kroon-en-brugwerk.html">Kroon en brugwerk</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/orthodontie.html">Orthodontie</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/parodontologie.html">Parodontologie</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/periodieke-controle.html">Periodieke controle</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/prothetiek.html">Prothetiek</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/rontgenologie.html">Rontgenologie</a>
-                                                    </li>
-
-                                                    <li class="menu-item">
-                                                        <a href="/private/diensten/wortelkanaal-behandelingen.html">Wortelkanaalbehandelingen</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="menu-item-type-custom">
-                                                <a href="/private/faq.html" class="">Veelgestelde vragen</a>
-                                            </li>
-
-                                            <li class="menu-item-type-custom current-menu-item">
-                                                <a href="/private/contact.html">Contact</a>
-                                            </li>
-
-                                        </ul>
-                                    </nav>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </header>
+                </div>
+            </section>
 
-                <!-- END MENU -->
-
-                <section class="heading breadcrumb">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <h1 class="page_title">Contact</h1>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="breadcrumbs text-right">
-                                    <a class="breadcrumbs_item home" href="index.html">Home</a><span
-                                    class="breadcrumbs_delimiter icon-right-open"></span><span class="breadcrumbs_item current">Contact</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="map_section" class="">
-                    <div class="row text-center">
-                        <div class="col-sm-12">
-                            <div id="map" class="itited" style="height: 600px;"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="contact_info_section_2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <div class="col-sm-12">
-                                    <span class="address"></span>
-                                </div>
-                                <div class="col-sm-12">
-                                    Praktijk P.T. The<br>Gerwenseweg 9A<br>5708 EH Helmond
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-4 text-center">
-                                <div class="col-sm-12">
-                                    <span class="phone"></span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <span>0492 55 45 01</span>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 text-center">
-                                <div class="col-sm-12">
-                                    <span class="phone"></span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <span><strong>Ma-Wo: </strong>8:00 - 17:00<br><strong>Do-Vr: </strong>8:00 - 12:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="contact_form_section_2" class="light_section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <h3 class="sc_title">Neem graag contact met ons op!</h3>
-                                <p class="col-sm-6 col-sm-offset-3 text-left">Heeft u vragen over een behandeling, wilt u zich inschrijven of gewoon een keertje spreken? Omschrijf hieronder waarmee we u van dienst kunnen zijn, dan nemen we zo spoedig mogelijk contact met u op.<br><br>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <form role="form" id="contactForm" data-toggle="validator" class="shake">
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <input type="text" class="form-control" id="name" placeholder="Voornaam" required>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input type="text" class="form-control" id="last-name" placeholder="Achternaam" required>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input type="email" class="form-control" id="email" placeholder="E-mail adres" required>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input type="text" class="form-control" id="phone" placeholder="Telefoon" required>
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <textarea id="message" class="form-control" rows="6" required>Ik zou graag vrijblijvend een afspraak maken, </textarea>
-                                        </div>
-                                        <div class="form-group col-sm-6 col-sm-offset-3">
-                                            <span id="message-display" class="form-control"></span>
-                                        </div>
-                                        <div class="form-group col-sm-6 col-sm-offset-3">
-                                            <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lcp8goUAAAAANtLe0nMEeLJCJtkx8RbYH7UfDMV" data-callback="recaptchaCallback"></div>
-                                            <button type="button" id="form-submit" class="btn btn-default btn-lg pull-right" onclick="emailFormSubmit()" disabled>Verstuur</button>
-                                        </div>
-
+            <<!-- MENU -->
+            <header id="header" class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 topWrap">
+                            <div class="logo logo_center">
+                                <a class="navbar-brand" href="index.html">
+                                    <img class="logo_main" src="images/logo-only.png" alt="Tandarts The Logo">
+                                    <div class="logo_text_container">
+                                        <span class="logo_text">Tandarts P.T. The</span>
+                                        <span class="logo_subtitle">Praktijk voor parodontologie, implantologie en orthodontie.</span>
                                     </div>
-                                </form>
+                                </a>
+                            </div>
+                            <div class="bottomWrap">
+                                <div class="search" title="Open/close search form">
+                                    <div class="searchForm">
+                                        <form role="search" method="get" class="search-form" action="#">
+                                            <input type="text" class="searchField" placeholder="" value="" name="s" title="Search for:">
+                                            <button type="submit" class="searchSubmit" title="Start search"><span class="icoSearch"></span></button>
+                                        </form>
+                                    </div>
+                                    <div class="ajaxSearchResults"></div>
+                                </div>
+                                <a href="#" class="openResponsiveMenu icon-menu"></a>
+                                <nav id="mainmenu_wrapper" class="menuTopWrap topMenuStyleLine text-center">
+                                    <ul id="mainmenu" class="nav sf-menu inited ">
+
+                                        <li class="menu-item-type-custom">
+                                            <a href="/private/index.html">Home</a>
+                                        </li>
+
+                                        <li class="menu-item-type-custom">
+                                            <a href="/private/team.html">Ons team</a>
+                                        </li>
+
+                                        <li class="menu-item-type-custom menu-item-has-children">
+                                            <a href="/private/diensten.html">Diensten <span class="caret"></span></a>
+                                            <ul class="sub-menu fadeInUp animated">
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/chirurgie.html">Chirurgie</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/esthetiek.html">Esthetiek</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/gaatjes-en-vullen.html">Gaatjes en vullingen</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/implantologie.html">Implantologie</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/knarsen.html">Knarsen</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/kroon-en-brugwerk.html">Kroon en brugwerk</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/orthodontie.html">Orthodontie</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/parodontologie.html">Parodontologie</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/periodieke-controle.html">Periodieke controle</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/prothetiek.html">Prothetiek</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/rontgenologie.html">Rontgenologie</a>
+                                                </li>
+
+                                                <li class="menu-item">
+                                                    <a href="/private/diensten/wortelkanaal-behandelingen.html">Wortelkanaalbehandelingen</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="menu-item-type-custom">
+                                            <a href="/private/faq.html" class="">Veelgestelde vragen</a>
+                                        </li>
+
+                                        <li class="menu-item-type-custom current-menu-item">
+                                            <a href="/private/contact.html">Contact</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </header>
 
-                <footer>
-                   <div class="copyright_area">
-                      <div class="container">
-                         <div class="row copy">
-                           <div class="col-sm-9 copyright"><a href="www.thijsschipper.com">Thijs Schipper</a> &copy; 2016 Alle rechten voorbehouden</div>
-                           <div class="col-sm-3 footer_social text-right">
-                               <div class="sc_socials">
-                                  <div class="sc_socials_item"><a href="https://www.facebook.com/thijs.schipper" target="_blank" class="sc_icon icon-facebook-circled"></a></div>
-                                  <div class="sc_socials_item"><a href="https://www.linkedin.com/in/thijs-schipper-1287129" target="_blank" class="sc_icon icon-linkedin-circled"></a></div>
-                              </div>
-                          </div>
-                      </div>
+            <!-- END MENU -->
+
+            <section class="heading breadcrumb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h1 class="page_title">Contact</h1>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="breadcrumbs text-right">
+                                <a class="breadcrumbs_item home" href="index.html">Home</a><span
+                                class="breadcrumbs_delimiter icon-right-open"></span><span class="breadcrumbs_item current">Contact</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="map_section" class="">
+                <div class="row text-center">
+                    <div class="col-sm-12">
+                        <div id="map" class="itited" style="height: 600px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact_info_section_2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <div class="col-sm-12">
+                                <span class="address"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                Praktijk P.T. The<br>Gerwenseweg 9A<br>5708 EH Helmond
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 text-center">
+                            <div class="col-sm-12">
+                                <span class="phone"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <span>0492 55 45 01</span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 text-center">
+                            <div class="col-sm-12">
+                                <span class="phone"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <span><strong>Ma-Wo: </strong>8:00 - 17:00<br><strong>Do-Vr: </strong>8:00 - 12:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact_form_section_2" class="light_section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h3 class="sc_title">Neem graag contact met ons op!</h3>
+                            <p class="col-sm-6 col-sm-offset-3 text-left">Heeft u vragen over een behandeling, wilt u zich inschrijven of gewoon een keertje spreken? Omschrijf hieronder waarmee we u van dienst kunnen zijn, dan nemen we zo spoedig mogelijk contact met u op.<br><br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <form role="form" id="contactForm" data-toggle="validator" class="shake">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" class="form-control" id="name" placeholder="Voornaam" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" class="form-control" id="last-name" placeholder="Achternaam" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="email" class="form-control" id="email" placeholder="E-mail adres" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <input type="text" class="form-control" id="phone" placeholder="Telefoon" required>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <textarea id="message" class="form-control" rows="6" required>Ik zou graag vrijblijvend een afspraak maken, </textarea>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-sm-offset-3">
+                                        <span id="message-display" class="form-control"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-sm-offset-3">
+                                        <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lcp8goUAAAAANtLe0nMEeLJCJtkx8RbYH7UfDMV" data-callback="recaptchaCallback"></div>
+                                        <button type="button" id="form-submit" class="btn btn-default btn-lg pull-right" onclick="emailFormSubmit()" disabled>Verstuur</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+             <div class="copyright_area">
+              <div class="container">
+               <div class="row copy">
+                 <div class="col-sm-9 copyright"><a href="www.thijsschipper.com">Thijs Schipper</a> &copy; 2016 Alle rechten voorbehouden</div>
+                 <div class="col-sm-3 footer_social text-right">
+                     <div class="sc_socials">
+                      <div class="sc_socials_item"><a href="https://www.facebook.com/thijs.schipper" target="_blank" class="sc_icon icon-facebook-circled"></a></div>
+                      <div class="sc_socials_item"><a href="https://www.linkedin.com/in/thijs-schipper-1287129" target="_blank" class="sc_icon icon-linkedin-circled"></a></div>
                   </div>
               </div>
-          </footer>
-
+          </div>
       </div>
+  </div>
+</footer>
 
-      <div class="preloader">
-        <div class="preloader_image"></div>
-    </div>
+</div>
 
-    <!-- libraries -->
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="js/vendor/jquery-1.11.3.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/jquery.appear.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<div class="preloader">
+    <div class="preloader_image"></div>
+</div>
 
-    <!-- superfish menu  -->
-    <script src="js/vendor/superfish.js"></script>
 
-    <!-- page scrolling -->
-    <script src="js/vendor/jquery.ui.totop.js"></script>
 
-    <!-- sliders, filters, carousels -->
-    <script src='js/vendor/jquery.flexslider-min.js'></script>
+<!-- libraries -->
+<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="js/vendor/jquery-1.11.3.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.appear.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpjTIPquxvkqgnJn0ngzUIjEWFeirCsUc&callback=doMap"></script>
 
-    <!-- custom scripts -->
-    <script src="js/custom/front.min.js"></script>
-    <script src="js/custom/utils.min.js"></script>
-    <script src="js/custom/shortcodes_init.min.js"></script>
-    <script src="js/map.js"></script>
+<!-- superfish menu  -->
+<script src="js/vendor/superfish.js"></script>
+
+<!-- page scrolling -->
+<script src="js/vendor/jquery.ui.totop.js"></script>
+
+<!-- sliders, filters, carousels -->
+<script src='js/vendor/jquery.flexslider-min.js'></script>
+
+<!-- custom scripts -->
+<script src="js/custom/front.min.js"></script>
+<script src="js/custom/utils.min.js"></script>
+<script src="js/custom/shortcodes_init.min.js"></script>
+
 
 </body>
 </html>

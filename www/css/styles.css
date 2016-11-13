@@ -7132,9 +7132,10 @@ textarea {
   transition: none;
 }
 #contactForm .form-control#message-display {
-  padding-top: 6px;
+  /*padding-top: 6px;*/
   padding-left: 24px;
-  padding-bottom: 30px;
+  /*padding-bottom: 30px;*/
+  height: auto;
 }
 #contactForm .form-control#message-display.send-success {
   border-color: #22aa22 !important;
