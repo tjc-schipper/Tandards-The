@@ -4,10 +4,10 @@
 //////////////////////////
 
 //Your E-mail
-$to_email = 'tjc.schipper@gmail.com';
+$to_email = 'info@mooibijtgoed.nl';
 
 //Internal contactform email 'sender'
-$contact_form_email = 'info@mooibijtgoed.nl';
+$contact_form_email = 'contactformulier@mooibijtgoed.nl';	// WERKT DIT? Dit email adres bestaat niet. Anders komt er altijd "From:me" te staan, verwarrend.
 
 //Default Subject if 'subject' field not specified
 $default_subject = 'Nieuw bericht van contactformulier';
