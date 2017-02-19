@@ -18,6 +18,9 @@ $name_not_specified = 'Om een bericht te versturen hebben wij in elk geval uw na
 //Message if 'message' field not specified
 $message_not_specified = 'Zonder berichttekst weten wij niet waarmee we u van dienst kunnen zijn. Vul deze in alvorens te verzenden.';
 
+//Message if no contact information supplied
+$no_contact_info = 'Zonder contactinformatie (telefoonnummer of email adres) kunnen wij u niet meer bereiken. Vul deze in alvorens te verzenden.';
+
 //Message if e-mail sent successfully
 $email_was_sent = 'Bedankt, uw bericht is verzonden. Wij zullen spoedig contact met u opnemen.';
 
@@ -51,9 +54,26 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 	if(!empty($_POST['email']))
 		$contact_email 	= stripslashes(strip_tags(trim($_POST['email'])));
 	
+	if (!empty($_POST['birthdate']))
+		$birthdate		= stripslashes(strip_tags(trim($_POST['birthdate'])));
+
+	if (!empty($_POST['address']))
+		$address		= stripslashes(strip_tags(trim($_POST['address'])));
+
+	if (!empty($_POST['housenr']))
+		$housenr		= stripslashes(strip_tags(trim($_POST['housenr'])));
+
+	if (!empty($_POST['addition']))
+		$addition		= stripslashes(strip_tags(trim($_POST['addition'])));
+
+	if (!empty($_POST['postcode']))
+		$postcode		= stripslashes(strip_tags(trim($_POST['postcode'])));
+
+	if (!empty($_POST['city']))
+		$city		= stripslashes(strip_tags(trim($_POST['city'])));
+
 	if (!empty($_POST['captcha']))
 		$captcha 		= stripslashes(strip_tags(trim($_POST['captcha'])));
-
 
 	// Verify captcha response
 	$verification = json_decode(verifyCaptcha($captcha), true);
@@ -63,8 +83,15 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 
 	// Compose contact name, accounting for empty fields
 	$contact_name = ((isset($firstname)) ? $firstname : '').' '.((isset($lastname)) ? $lastname : '');
+	$full_address_line = (isset($address) ? $address : '')
+		.(isset($housenr) ? " $housenr" : '')
+		.(isset($addition) ? " $addition" : '')
+		.','
+		.(isset($postcode) ? " $postcode": '')
+		.(isset($city) ? " $city" : '';
 
-	//Error if no sender name was specified
+
+	// Error if no sender name was specified
 	if(empty($contact_name)) {
 		$errors[] = $name_not_specified;
 	}
@@ -74,17 +101,25 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 		$errors[] = $message_not_specified;
 	}
 
+	// Error if no contact information was supplied
+	if(empty($email) && empty($phone)) {
+		$errors[] = $no_contact_info;
+	}
+
 	// Compose message body
 	$body = '<html><body>';
 	$body .= '<h2>Nieuw bericht van <i>'.$contact_name.'</i>.</h2>';
 	$body .= '<h4>Verstuurd op '.date('d-m-Y').' om '.date('g:iA').'</h4>';
+
 	if (!empty($message))
 		$body .= wordwrap($message, 70);
 	else
 		$body .= '[GEEN BERICHT INGEVOERD]';
 	$body .= '<br><br><h2>Contactinformatie</h2><ul>';
-	$body .= '<li>Telefoon: '.((!empty($phone)) ? $phone : '[niet bekend]').'</li>';
-	$body .= '<li>Email: '.((!empty($contact_email)) ? $contact_email : '[niet bekend]').'</li>';
+	$body .= "<li>Telefoon: ".issetor($phone)"</li>";
+	$body .= "<li>Email: ".issetor($contact_email)."</li>";
+	$body .= "<li>Adres: ".issetor($full_address_line)"</li>";
+	$body .= "<li>Geboortedatum: ".issetor($birthdate)"</li>";
 	$body .= '</ul></body></html>';
 
 	// Configure headers
@@ -136,5 +171,9 @@ function verifyCaptcha($response) {
 function responseObject($success, $errors) {
 	$res = array('success' => $success, 'errors' => $errors);
 	return json_encode($res);
+}
+
+function issetor(&$ref, $def="Onbekend") {
+	return (isset($ref) && !empty($ref)) ? $ref : $def;
 }
 ?>

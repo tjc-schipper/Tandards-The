@@ -43,10 +43,17 @@
 
         // Called when the user submits the email form
         function emailFormSubmit() {
+            // Get form elements
             var firstName = document.getElementById("name").value.toString();
             var lastName = document.getElementById("last-name").value.toString();
             var email = document.getElementById("email").value.toString();
             var phone = document.getElementById("phone").value.toString();
+            var birthdate = document.getElementById("birthdate").value.toString();
+            var address = document.getElementById("address").value.toString();
+            var housenr = document.getElementById("housenr").value.toString();
+            var addition = document.getElementById("addition").value.toString();
+            var postcode = document.getElementById("postcode").value.toString();
+            var city = document.getElementById("city").value.toString();
             var message = document.getElementById("message").value.toString();
             
             $.post("contact-form.php", {
@@ -54,6 +61,12 @@
                 lastname: lastName,
                 email: email,
                 phone: phone,
+                birthdate: birthdate,
+                address: address,
+                housenr: housenr,
+                addition: addition,
+                postcode: postcode,
+                city: city,
                 message: message,
                 captcha: captchaResponse
             }, function (r) {
@@ -61,16 +74,11 @@
                 
                 // Show all errors/messages in message-display
                 var display = $("#message-display").text((function(ers){
-                    var str = "";
 
-                    if (ers.constructor === Array) {
-                        // If multiple errors, append the strings with line breaks inbetween
-                        for (var i in ers) {
-                            str += ers[i] + "\r\n";
-                        }
-                    } else {
-                        str = ers;
-                    }
+                    // If multiple messages, append the strings with line breaks inbetween
+                    var str = (ers.constructor === Array) ? 
+                        ers.join("\r\n") : 
+                        ers;
 
                     return str;
                 })(response.errors));
@@ -318,24 +326,63 @@
                         <div class="col-sm-10 col-sm-offset-1">
                             <form role="form" id="contactForm" data-toggle="validator" class="shake">
                                 <div class="row">
+
                                     <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" id="name" placeholder="Voornaam" required>
+                                        <label for="name">Voornaam</label>
+                                        <input type="text" class="form-control" id="name" placeholder="" required>
                                     </div>
+
                                     <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" id="last-name" placeholder="Achternaam" required>
+                                        <label for="last-name">Achternaam</label>
+                                        <input type="text" class="form-control" id="last-name" placeholder="" required>
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail adres" required>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" id="phone" placeholder="Telefoon" required>
-                                    </div>
+
                                     <div class="form-group col-sm-12">
+                                        <label for="birthdate">Geboortedatum</label>
+                                        <input type="date" class="form-control" id="birthdate" placeholder="" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="email">Email adres</label>
+                                        <input type="email" class="form-control" id="email" placeholder="" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="phone">Telefoonnummer</label>
+                                        <input type="tel" class="form-control" id="phone" placeholder="" required>
+                                    </div>
+
+                                    <!-- TODO: Spacing verbeteren! -->
+                                    <div class="form-group col-sm-6">
+                                        <label for="address">Adres</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Straatnaam" required>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="address"></label>
+                                        <input type="number" class="form-control" id="housenr" placeholder="Nummer" required>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="address"></label>
+                                        <input type="text" class="form-control" id="addition" placeholder="Toevoeging" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="address"></label>
+                                        <input type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="address"></label>
+                                        <input type="text" class="form-control" id="city" placeholder="Plaatsnaam" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label for="address"></label>
                                         <textarea id="message" class="form-control" rows="6" required>Ik zou graag vrijblijvend een afspraak maken, </textarea>
                                     </div>
+
                                     <div class="form-group col-sm-6 col-sm-offset-3">
                                         <span id="message-display" class="form-control"></span>
                                     </div>
+
                                     <div class="form-group col-sm-6 col-sm-offset-3">
                                         <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lcp8goUAAAAANtLe0nMEeLJCJtkx8RbYH7UfDMV" data-callback="recaptchaCallback"></div>
                                         <button type="button" id="form-submit" class="btn btn-default btn-lg pull-right" onclick="emailFormSubmit()" disabled>Verstuur</button>
@@ -349,24 +396,24 @@
             </section>
 
             <footer>
-               <div class="copyright_area">
-                  <div class="container">
-                     <div class="row copy">
-                       <div class="col-sm-9 copyright"><a href="www.thijsschipper.com">Thijs Schipper</a> &copy; 2016 Alle rechten voorbehouden</div>
-                       <div class="col-sm-3 footer_social text-right">
-                           <div class="sc_socials">
-                              <div class="sc_socials_item"><a href="https://www.facebook.com/thijs.schipper" target="_blank" class="sc_icon icon-facebook-circled"></a></div>
-                              <div class="sc_socials_item"><a href="https://www.linkedin.com/in/thijs-schipper-1287129" target="_blank" class="sc_icon icon-linkedin-circled"></a></div>
-                          </div>
-                      </div>
+             <div class="copyright_area">
+              <div class="container">
+               <div class="row copy">
+                 <div class="col-sm-9 copyright"><a href="www.thijsschipper.com">Thijs Schipper</a> &copy; 2016 Alle rechten voorbehouden</div>
+                 <div class="col-sm-3 footer_social text-right">
+                     <div class="sc_socials">
+                      <div class="sc_socials_item"><a href="https://www.facebook.com/thijs.schipper" target="_blank" class="sc_icon icon-facebook-circled"></a></div>
+                      <div class="sc_socials_item"><a href="https://www.linkedin.com/in/thijs-schipper-1287129" target="_blank" class="sc_icon icon-linkedin-circled"></a></div>
                   </div>
               </div>
           </div>
-      </footer>
-
+      </div>
   </div>
+</footer>
 
-  <div class="preloader">
+</div>
+
+<div class="preloader">
     <div class="preloader_image"></div>
 </div>
 
