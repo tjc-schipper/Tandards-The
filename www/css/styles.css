@@ -7134,6 +7134,7 @@ textarea {
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
+  /*THIJS spinners weghalen uit date controls*/
 }
 #contactForm .form-control#message-display {
   /*padding-top: 6px;*/
@@ -7146,6 +7147,14 @@ textarea {
 }
 #contactForm .form-control#message-display.send-error {
   border-color: #aa2222 !important;
+}
+#contactForm .form-control input[type=date]::-webkit-outer-spin-button,
+#contactForm .form-control input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#contactForm .form-control input[type=date] {
+  -moz-appearance: textfield;
 }
 #contactForm textarea {
   resize: none;
@@ -8873,6 +8882,10 @@ header .topWrap .navbar a {
 #team_section_5 .container {
   padding-bottom: 79px;
 }
+/*THIJS*/
+#team_description_section p {
+  font-size: 20px;
+}
 /*=== [ Gallery Section ] ====================================================================================*/
 #gallery_section h3 {
   margin-top: 11px;
@@ -9515,6 +9528,8 @@ header .topWrap .navbar a {
 }
 #team_member_section .container p {
   margin-bottom: 15px;
+  font-size: 20px;
+  /*THIJS*/
 }
 #team_member_section .container .row-eq-height {
   display: -webkit-box;
