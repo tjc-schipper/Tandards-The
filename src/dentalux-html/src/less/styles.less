@@ -3875,8 +3875,8 @@ input[type="text"], input[type="submit"], [type="password"], [type="email"], tex
         font-size: 35px;
         font-weight: 400;
         line-height: 25px;
-        margin-right: 23px;
-        position: relative;
+        /*margin-right: 0px;
+        position: relative;*/
         top: 0px;
         left: 8px;
       }
@@ -3893,7 +3893,7 @@ input[type="text"], input[type="submit"], [type="password"], [type="email"], tex
         font-weight: 400;
         line-height: 25px;
         margin-right: 10px;
-        margin-left: 20px;
+        margin-left: 22px;
         position: relative;
         top: 2px;
       }
@@ -3911,6 +3911,23 @@ input[type="text"], input[type="submit"], [type="password"], [type="email"], tex
       strong{
         color: @brand-primary;
         font-weight: normal;
+      }
+    }
+    .calendar{
+      position: relative;
+      right: 10px;
+      &:before{
+        color: @brand-primary;
+        content: '\e877';
+        font-family: "fontello";
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 25px;
+        margin-right: 10px;
+        margin-left: 22px;
+        position: relative;
+        top: 2px;
       }
     }
   }

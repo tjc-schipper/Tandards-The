@@ -9322,8 +9322,8 @@ header .topWrap .navbar a {
   font-size: 35px;
   font-weight: 400;
   line-height: 25px;
-  margin-right: 23px;
-  position: relative;
+  /*margin-right: 0px;
+        position: relative;*/
   top: 0px;
   left: 8px;
 }
@@ -9340,7 +9340,7 @@ header .topWrap .navbar a {
   font-weight: 400;
   line-height: 25px;
   margin-right: 10px;
-  margin-left: 20px;
+  margin-left: 22px;
   position: relative;
   top: 2px;
 }
@@ -9358,6 +9358,23 @@ header .topWrap .navbar a {
 #contact_info_section_2 .container .timetable strong {
   color: #34B8C0;
   font-weight: normal;
+}
+#contact_info_section_2 .container .calendar {
+  position: relative;
+  right: 10px;
+}
+#contact_info_section_2 .container .calendar:before {
+  color: #34B8C0;
+  content: '\e877';
+  font-family: "fontello";
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  margin-right: 10px;
+  margin-left: 22px;
+  position: relative;
+  top: 2px;
 }
 /*=== [ Wy choose us Section ] ===============================================================================*/
 #why_choose_us_section .container {
