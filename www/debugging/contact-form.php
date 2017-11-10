@@ -79,11 +79,11 @@ if(isset($_POST['message']) and isset($_POST['name']) and isset($_POST['captcha'
 		$captcha 		= stripslashes(strip_tags(trim($_POST['captcha'])));
 
 	
-	/*// Verify captcha response
+	// Verify captcha response
 	$verification = json_decode(verifyCaptcha($captcha), true);
 	if ($verification['success'] === FALSE) {
 		array_push($errors, $invalid_captcha);
-	}*/
+	}
 
 	// Compose contact name, accounting for empty fields
 	$contact_name = ((isset($firstname)) ? $firstname : '').' '.((isset($lastname)) ? $lastname : '');
